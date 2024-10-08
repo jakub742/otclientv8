@@ -225,6 +225,19 @@ function onMiniWindowClose()
   inventoryButton:setOn(false)
 end
 
+local function setFrames(item, itemWidget)
+  local name = item:getTooltip()
+  if (name) then
+    if (string.find(name, "legendary")) then
+      itemWidget:setImageSource('/images/ui/rarity_gold')
+    elseif (string.find(name, "epic")) then
+      itemWidget:setImageSource('/images/ui/rarity_purple')
+    elseif (string.find(name, "rare")) then
+      itemWidget:setImageSource('/images/ui/rarity_blue')
+    end
+  end
+end
+
 -- hooked events
 function onInventoryChange(player, slot, item, oldItem)
   if slot > InventorySlotPurse then return end
@@ -240,6 +253,7 @@ function onInventoryChange(player, slot, item, oldItem)
   if item then
     itemWidget:setStyle('InventoryItem')
     itemWidget:setItem(item)
+    setFrames(item, itemWidget)
   else
     itemWidget:setStyle(InventorySlotStyles[slot])
     itemWidget:setItem(nil)

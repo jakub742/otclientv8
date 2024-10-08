@@ -108,6 +108,28 @@ function refreshContainerPages(container)
   end
 end
 
+local function setFrames()
+  for _, container in pairs(g_game.getContainers()) do
+      local window = container.itemsPanel
+      for i, child in pairs(window:getChildren()) do
+          local id = child:getItemId()
+          local price = 0
+          local name = child:getTooltip()
+          child:setImageSource("/images/ui/item")
+          if (name) then
+            if (string.find(name, "legendary")) then
+              child:setImageSource('/images/ui/rarity_gold')
+            elseif (string.find(name, "epic")) then
+              child:setImageSource('/images/ui/rarity_purple')
+            elseif (string.find(name, "rare")) then
+              child:setImageSource('/images/ui/rarity_blue')
+            end
+          end
+
+      end
+  end
+end
+
 function onContainerOpen(container, previousContainer)
   local containerWindow
   if previousContainer then
@@ -213,7 +235,7 @@ function onContainerOpen(container, previousContainer)
     local filledLines = math.max(math.ceil(container:getItemsCount() / layout:getNumColumns()), 1)
     containerWindow:setContentHeight(filledLines*cellSize.height)
   end
-
+  setFrames()
   containerWindow:setup()
 end
 
@@ -224,10 +246,12 @@ end
 function onContainerChangeSize(container, size)
   if not container.window then return end
   refreshContainerItems(container)
+  setFrames()
 end
 
 function onContainerUpdateItem(container, slot, item, oldItem)
   if not container.window then return end
   local itemWidget = container.itemsPanel:getChildById('item' .. slot)
   itemWidget:setItem(item)
+  setFrames()
 end

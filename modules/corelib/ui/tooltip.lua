@@ -8,7 +8,7 @@ local currentHoveredWidget
 -- private functions
 local function moveToolTip(first)
   if not first and (not toolTipLabel:isVisible() or toolTipLabel:getOpacity() < 0.1) then return end
-  
+
   local pos = g_window.getMousePosition()
   local windowSize = g_window.getSize()
   local labelSize = toolTipLabel:getSize()
@@ -65,8 +65,10 @@ end
 
 -- public functions
 function g_tooltip.init()
-  connect(UIWidget, {  onStyleApply = onWidgetStyleApply,
-                       onHoverChange = onWidgetHoverChange})
+  connect(UIWidget, {
+    onStyleApply = onWidgetStyleApply,
+    onHoverChange = onWidgetHoverChange
+  })
 
   addEvent(function()
     toolTipLabel = g_ui.createWidget('UILabel', rootWidget)
@@ -84,8 +86,10 @@ function g_tooltip.init()
 end
 
 function g_tooltip.terminate()
-  disconnect(UIWidget, { onStyleApply = onWidgetStyleApply,
-                         onHoverChange = onWidgetHoverChange })
+  disconnect(UIWidget, {
+    onStyleApply = onWidgetStyleApply,
+    onHoverChange = onWidgetHoverChange
+  })
 
   currentHoveredWidget = nil
   toolTipLabel:destroy()
@@ -100,16 +104,16 @@ function g_tooltip.display(text)
 
   -- Split the text into two parts: first line and rest
   local firstLine = text:match("^(.-)\n") or text -- If no newline, treat the entire text as firstLine
-  local rest = text:match("\n(.*)") or "" -- Empty if no second part
-
+  local rest = text:match("\n(.*)") or ""         -- Empty if no second part
+  local itemNameLower = firstLine:lower()
   -- Set color for the first line
   -- Rarity colors used from WoW wiki https://wowpedia.fandom.com/wiki/API_GetItemQualityColor
   toolTipLabel:setColor("#ffffff")
-  if string.find(firstLine, "legendary") then
+  if string.find(itemNameLower, "legendary") then
     toolTipLabel:setColor("#ff8000")
-  elseif string.find(firstLine, "epic") then
+  elseif string.find(itemNameLower, "epic") then
     toolTipLabel:setColor("#a335ee")
-  elseif string.find(firstLine, "rare") then
+  elseif string.find(itemNameLower, "rare") then
     toolTipLabel:setColor("#0070dd")
   end
 
@@ -143,7 +147,7 @@ function g_tooltip.display(text)
   g_effects.fadeIn(toolTipLabel2, 100)
 
   -- Move tooltips together on mouse move
-  moveToolTip(true)  -- Position tooltips initially
+  moveToolTip(true) -- Position tooltips initially
   connect(rootWidget, {
     onMouseMove = moveToolTip,
   })
@@ -152,12 +156,11 @@ end
 function g_tooltip.hide()
   g_effects.fadeOut(toolTipLabel, 100)
   g_effects.fadeOut(toolTipLabel2, 100)
-  
+
   disconnect(rootWidget, {
     onMouseMove = moveToolTip,
-  })  
+  })
 end
-
 
 -- @docclass UIWidget @{
 

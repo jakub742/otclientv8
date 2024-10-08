@@ -257,6 +257,7 @@ function onInventoryChange(player, slot, item, oldItem)
   else
     itemWidget:setStyle(InventorySlotStyles[slot])
     itemWidget:setItem(nil)
+    itemWidget:setTooltip(nil)
   end
 end
 

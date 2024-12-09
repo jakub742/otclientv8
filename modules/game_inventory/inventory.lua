@@ -1,21 +1,96 @@
 Icons = {}
-Icons[PlayerStates.Poison] = { tooltip = tr('You are poisoned'), path = '/images/game/states/poisoned', id = 'condition_poisoned' }
-Icons[PlayerStates.Burn] = { tooltip = tr('You are burning'), path = '/images/game/states/burning', id = 'condition_burning' }
-Icons[PlayerStates.Energy] = { tooltip = tr('You are electrified'), path = '/images/game/states/electrified', id = 'condition_electrified' }
+Icons[PlayerStates.Poison] = {
+  tooltip = tr('You are poisoned'),
+  path = '/images/game/states/poisoned',
+  id =
+  'condition_poisoned'
+}
+Icons[PlayerStates.Burn] = {
+  tooltip = tr('You are burning'),
+  path = '/images/game/states/burning',
+  id =
+  'condition_burning'
+}
+Icons[PlayerStates.Energy] = {
+  tooltip = tr('You are electrified'),
+  path = '/images/game/states/electrified',
+  id =
+  'condition_electrified'
+}
 Icons[PlayerStates.Drunk] = { tooltip = tr('You are drunk'), path = '/images/game/states/drunk', id = 'condition_drunk' }
-Icons[PlayerStates.ManaShield] = { tooltip = tr('You are protected by a magic shield'), path = '/images/game/states/magic_shield', id = 'condition_magic_shield' }
-Icons[PlayerStates.Paralyze] = { tooltip = tr('You are paralysed'), path = '/images/game/states/slowed', id = 'condition_slowed' }
+Icons[PlayerStates.ManaShield] = {
+  tooltip = tr('You are protected by a magic shield'),
+  path =
+  '/images/game/states/magic_shield',
+  id = 'condition_magic_shield'
+}
+Icons[PlayerStates.Paralyze] = {
+  tooltip = tr('You are paralysed'),
+  path = '/images/game/states/slowed',
+  id =
+  'condition_slowed'
+}
 Icons[PlayerStates.Haste] = { tooltip = tr('You are hasted'), path = '/images/game/states/haste', id = 'condition_haste' }
-Icons[PlayerStates.Swords] = { tooltip = tr('You may not logout during a fight'), path = '/images/game/states/logout_block', id = 'condition_logout_block' }
-Icons[PlayerStates.Drowning] = { tooltip = tr('You are drowning'), path = '/images/game/states/drowning', id = 'condition_drowning' }
-Icons[PlayerStates.Freezing] = { tooltip = tr('You are freezing'), path = '/images/game/states/freezing', id = 'condition_freezing' }
-Icons[PlayerStates.Dazzled] = { tooltip = tr('You are dazzled'), path = '/images/game/states/dazzled', id = 'condition_dazzled' }
-Icons[PlayerStates.Cursed] = { tooltip = tr('You are cursed'), path = '/images/game/states/cursed', id = 'condition_cursed' }
-Icons[PlayerStates.PartyBuff] = { tooltip = tr('You are strengthened'), path = '/images/game/states/strengthened', id = 'condition_strengthened' }
-Icons[PlayerStates.PzBlock] = { tooltip = tr('You may not logout or enter a protection zone'), path = '/images/game/states/protection_zone_block', id = 'condition_protection_zone_block' }
-Icons[PlayerStates.Pz] = { tooltip = tr('You are within a protection zone'), path = '/images/game/states/protection_zone', id = 'condition_protection_zone' }
-Icons[PlayerStates.Bleeding] = { tooltip = tr('You are bleeding'), path = '/images/game/states/bleeding', id = 'condition_bleeding' }
-Icons[PlayerStates.Hungry] = { tooltip = tr('You are hungry'), path = '/images/game/states/hungry', id = 'condition_hungry' }
+Icons[PlayerStates.Swords] = {
+  tooltip = tr('You may not logout during a fight'),
+  path =
+  '/images/game/states/logout_block',
+  id = 'condition_logout_block'
+}
+Icons[PlayerStates.Drowning] = {
+  tooltip = tr('You are drowning'),
+  path = '/images/game/states/drowning',
+  id =
+  'condition_drowning'
+}
+Icons[PlayerStates.Freezing] = {
+  tooltip = tr('You are freezing'),
+  path = '/images/game/states/freezing',
+  id =
+  'condition_freezing'
+}
+Icons[PlayerStates.Dazzled] = {
+  tooltip = tr('You are dazzled'),
+  path = '/images/game/states/dazzled',
+  id =
+  'condition_dazzled'
+}
+Icons[PlayerStates.Cursed] = {
+  tooltip = tr('You are cursed'),
+  path = '/images/game/states/cursed',
+  id =
+  'condition_cursed'
+}
+Icons[PlayerStates.PartyBuff] = {
+  tooltip = tr('You are strengthened'),
+  path = '/images/game/states/strengthened',
+  id =
+  'condition_strengthened'
+}
+Icons[PlayerStates.PzBlock] = {
+  tooltip = tr('You may not logout or enter a protection zone'),
+  path =
+  '/images/game/states/protection_zone_block',
+  id = 'condition_protection_zone_block'
+}
+Icons[PlayerStates.Pz] = {
+  tooltip = tr('You are within a protection zone'),
+  path = '/images/game/states/protection_zone',
+  id =
+  'condition_protection_zone'
+}
+Icons[PlayerStates.Bleeding] = {
+  tooltip = tr('You are bleeding'),
+  path = '/images/game/states/bleeding',
+  id =
+  'condition_bleeding'
+}
+Icons[PlayerStates.Hungry] = {
+  tooltip = tr('You are hungry'),
+  path = '/images/game/states/hungry',
+  id =
+  'condition_hungry'
+}
 
 InventorySlotStyles = {
   [InventorySlotHead] = "HeadSlot",
@@ -63,10 +138,11 @@ function init()
   inventoryWindow:disableResize()
   inventoryPanel = inventoryWindow:getChildById('contentsPanel'):getChildById('inventoryPanel')
   if not inventoryWindow.forceOpen then
-    inventoryButton = modules.client_topmenu.addRightGameToggleButton('inventoryButton', tr('Inventory') .. ' (Ctrl+I)', '/images/topbuttons/inventory', toggle)
+    inventoryButton = modules.client_topmenu.addRightGameToggleButton('inventoryButton', tr('Inventory') .. ' (Ctrl+I)',
+      '/images/topbuttons/inventory', toggle)
     inventoryButton:setOn(true)
   end
-  
+
   purseButton = inventoryWindow:recursiveGetChildById('purseButton')
   purseButton.onClick = function()
     local purse = g_game.getLocalPlayer():getInventoryItem(InventorySlotPurse)
@@ -74,7 +150,7 @@ function init()
       g_game.use(purse)
     end
   end
-  
+
   -- controls
   fightOffensiveBox = inventoryWindow:recursiveGetChildById('fightOffensiveBox')
   fightBalancedBox = inventoryWindow:recursiveGetChildById('fightBalancedBox')
@@ -101,17 +177,17 @@ function init()
   connect(chaseModeButton, { onCheckChange = onSetChaseMode })
   connect(safeFightButton, { onCheckChange = onSetSafeFight })
   if buttonPvp then
-    connect(buttonPvp, { onClick = onSetSafeFight2 })  
+    connect(buttonPvp, { onClick = onSetSafeFight2 })
   end
   connect(g_game, {
-    onGameStart = online,
-    onGameEnd = offline,
+    onGameStart       = online,
+    onGameEnd         = offline,
     onFightModeChange = update,
     onChaseModeChange = update,
     onSafeFightChange = update,
     onPVPModeChange   = update,
-    onWalk = check,
-    onAutoWalk = check
+    onWalk            = check,
+    onAutoWalk        = check
   })
 
   connect(LocalPlayer, { onOutfitChange = onOutfitChange })
@@ -119,19 +195,21 @@ function init()
   if g_game.isOnline() then
     online()
   end
--- controls end
+  -- controls end
 
--- status
+  -- status
   soulLabel = inventoryWindow:recursiveGetChildById('soulLabel')
   capLabel = inventoryWindow:recursiveGetChildById('capLabel')
   conditionPanel = inventoryWindow:recursiveGetChildById('conditionPanel')
 
 
-  connect(LocalPlayer, { onStatesChange = onStatesChange,
-                         onSoulChange = onSoulChange,
-                         onFreeCapacityChange = onFreeCapacityChange })
--- status end
-  
+  connect(LocalPlayer, {
+    onStatesChange = onStatesChange,
+    onSoulChange = onSoulChange,
+    onFreeCapacityChange = onFreeCapacityChange
+  })
+  -- status end
+
   refresh()
   inventoryWindow:setup()
 end
@@ -151,24 +229,26 @@ function terminate()
   end
 
   fightModeRadioGroup:destroy()
-  
+
   disconnect(g_game, {
-    onGameStart = online,
-    onGameEnd = offline,
+    onGameStart       = online,
+    onGameEnd         = offline,
     onFightModeChange = update,
     onChaseModeChange = update,
     onSafeFightChange = update,
     onPVPModeChange   = update,
-    onWalk = check,
-    onAutoWalk = check
+    onWalk            = check,
+    onAutoWalk        = check
   })
 
   disconnect(LocalPlayer, { onOutfitChange = onOutfitChange })
   -- controls end
   -- status
-  disconnect(LocalPlayer, { onStatesChange = onStatesChange,
-                         onSoulChange = onSoulChange,
-                         onFreeCapacityChange = onFreeCapacityChange })
+  disconnect(LocalPlayer, {
+    onStatesChange = onStatesChange,
+    onSoulChange = onSoulChange,
+    onFreeCapacityChange = onFreeCapacityChange
+  })
   -- status end
 
   inventoryWindow:destroy()
@@ -225,6 +305,20 @@ function onMiniWindowClose()
   inventoryButton:setOn(false)
 end
 
+local function setFrames(item, itemWidget)
+  local name = item:getTooltip()
+  if (name) then
+    local lowerName = name:lower()
+    if (string.find(lowerName, "legendary")) then
+      itemWidget:setImageSource('/images/ui/rarity_gold')
+    elseif (string.find(lowerName, "epic")) then
+      itemWidget:setImageSource('/images/ui/rarity_purple')
+    elseif (string.find(lowerName, "rare")) then
+      itemWidget:setImageSource('/images/ui/rarity_blue')
+    end
+  end
+end
+
 -- hooked events
 function onInventoryChange(player, slot, item, oldItem)
   if slot > InventorySlotPurse then return end
@@ -240,9 +334,11 @@ function onInventoryChange(player, slot, item, oldItem)
   if item then
     itemWidget:setStyle('InventoryItem')
     itemWidget:setItem(item)
+    setFrames(item, itemWidget)
   else
     itemWidget:setStyle(InventorySlotStyles[slot])
     itemWidget:setItem(nil)
+    itemWidget:setTooltip(nil)
   end
 end
 
@@ -252,7 +348,6 @@ function onBlessingsChange(player, blessings, oldBlessings)
     toggleAdventurerStyle(hasAdventurerBlessing)
   end
 end
-
 
 -- controls
 function update()
@@ -274,10 +369,10 @@ function update()
     if safeFight then
       buttonPvp:setOn(false)
     else
-      buttonPvp:setOn(true)  
+      buttonPvp:setOn(true)
     end
   end
-  
+
   if g_game.getFeature(GamePVPMode) then
     local pvpMode = g_game.getPVPMode()
     local pvpWidget = getPVPBoxByMode(pvpMode)
@@ -377,7 +472,7 @@ function onSetSafeFight(self, checked)
     if not checked then
       buttonPvp:setOn(false)
     else
-      buttonPvp:setOn(true)  
+      buttonPvp:setOn(true)
     end
   end
 end
@@ -468,7 +563,7 @@ function onFreeCapacityChange(player, freeCapacity)
     freeCapacity = math.floor(freeCapacity)
   end
   if freeCapacity > 99999 then
-    freeCapacity = math.min(9999, math.floor(freeCapacity/1000)) .. "k"
+    freeCapacity = math.min(9999, math.floor(freeCapacity / 1000)) .. "k"
   end
   capLabel:setText(tr('Cap') .. ':\n' .. freeCapacity)
 end
@@ -477,7 +572,7 @@ function onStatesChange(localPlayer, now, old)
   if now == old then return end
   local bitsChanged = bit32.bxor(now, old)
   for i = 1, 32 do
-    local pow = math.pow(2, i-1)
+    local pow = math.pow(2, i - 1)
     if pow > bitsChanged then break end
     local bitChanged = bit32.band(bitsChanged, pow)
     if bitChanged ~= 0 then
